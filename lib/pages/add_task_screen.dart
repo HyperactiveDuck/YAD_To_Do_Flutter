@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_app_flutter/models/task_data.dart';
+import 'package:hive/hive.dart';
+import 'package:to_do_app_flutter/models/task.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  const AddTaskScreen({
+  AddTaskScreen({
     super.key,
   });
+
+  final Box taskBox = Hive.box<Task>('taskBox');
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +42,8 @@ class AddTaskScreen extends StatelessWidget {
                 onChanged: (newText) {
                   newTaskTitle = newText;
                 },
-                style:
-                    TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                    color: Colors.black, fontWeight: FontWeight.bold),
                 decoration: const InputDecoration(
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.black87),
@@ -62,9 +66,11 @@ class AddTaskScreen extends StatelessWidget {
                   backgroundColor: Colors.black54,
                 ),
                 onPressed: () {
-                  Provider.of<TaskData>(context, listen: false)
-                      .addTask(newTaskTitle);
-                  Navigator.pop(context);
+                  if (newTaskTitle != '') {
+                    Provider.of<TaskData>(context, listen: false)
+                        .addTask(newTaskTitle);
+                    Navigator.pop(context);
+                  }
                 },
                 child: const Text(
                   'Add',

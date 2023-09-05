@@ -23,7 +23,7 @@ class _TasksScreenState extends State<TasksScreen> {
             builder: (context) => SingleChildScrollView(
               padding: EdgeInsets.only(
                   bottom: MediaQuery.of(context).viewInsets.bottom),
-              child: const AddTaskScreen(),
+              child: AddTaskScreen(),
             ),
           );
         },
@@ -34,7 +34,7 @@ class _TasksScreenState extends State<TasksScreen> {
         ),
       ),
       body: Container(
-        decoration: BoxDecoration(color: Colors.black87),
+        decoration: const BoxDecoration(color: Colors.black87),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -62,7 +62,7 @@ class _TasksScreenState extends State<TasksScreen> {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  SizedBox(height: 10.0),
+                  const SizedBox(height: 10.0),
                   Text(
                     '${Provider.of<TaskData>(context).taskCount} Tasks',
                     style: const TextStyle(

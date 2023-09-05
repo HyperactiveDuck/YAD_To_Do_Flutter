@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_app_flutter/models/task_data.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:to_do_app_flutter/widgets/task_tile.dart';
-import 'package:provider/provider.dart';
+import 'package:to_do_app_flutter/models/task.dart';
 
 class TasksList extends StatefulWidget {
   const TasksList({
@@ -13,22 +13,29 @@ class TasksList extends StatefulWidget {
 }
 
 class TasksListState extends State<TasksList> {
+  Box taskBox = Hive.box<Task>('taskBox');
+
   @override
   Widget build(BuildContext context) {
-    return Consumer<TaskData>(
-      builder: (context, taskData, child) {
+    return ValueListenableBuilder(
+      valueListenable: taskBox.listenable(),
+      builder: (context, taskBox, child) {
         return ListView.builder(
           itemBuilder: (context, index) => TaskTile(
             taskDelete: () {
-              taskData.deleteTask(taskData.allTheTasks[index]);
+              taskBox.deleteAt(index);
             },
-            taskTitle: taskData.allTheTasks[index].name,
-            isChecked: taskData.allTheTasks[index].isDone,
+            taskTitle: taskBox.getAt(index).name,
+            isChecked: taskBox.getAt(index).isDone,
             checkboxCallBack: (checkboxCallBack) {
-              taskData.updateTask(taskData.allTheTasks[index]);
+              taskBox.putAt(
+                  index,
+                  Task(
+                      name: taskBox.getAt(index).name,
+                      isDone: checkboxCallBack));
             },
           ),
-          itemCount: taskData.taskCount,
+          itemCount: taskBox.length,
         );
       },
     );
