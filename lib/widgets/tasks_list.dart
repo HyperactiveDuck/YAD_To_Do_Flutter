@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:to_do_app_flutter/models/task_data.dart';
 import 'package:to_do_app_flutter/widgets/task_tile.dart';
-import 'package:to_do_app_flutter/models/task.dart';
 
 class TasksList extends StatefulWidget {
   const TasksList({

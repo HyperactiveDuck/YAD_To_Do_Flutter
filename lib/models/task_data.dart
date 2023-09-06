@@ -22,8 +22,8 @@ class TaskData extends ChangeNotifier {
   void deleteTask(int index) async {
     await taskBox.values.elementAt(index).delete();
     taskBox.values.elementAt(index).save();
-    print(taskBox.values
-        .length); // taskBox.deleteAt(taskBox.values.toList().indexOf(task));
+    debugPrint(taskBox.values.length
+        .toString()); // taskBox.deleteAt(taskBox.values.toList().indexOf(task));
     notifyListeners();
   }
 
