@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:to_do_app_flutter/models/task_data.dart';
 import 'package:to_do_app_flutter/widgets/tasks_list.dart';
 import 'add_task_screen.dart';
 import 'package:hive/hive.dart';
@@ -42,7 +44,7 @@ class _TasksScreenState extends State<TasksScreen> {
             Container(
               padding: const EdgeInsets.only(
                   top: 60.0, left: 0.0, right: 0.0, bottom: 30.0),
-              child: const Column(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   CircleAvatar(
@@ -65,7 +67,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   ),
                   SizedBox(height: 10.0),
                   Text(
-                    'Your Tasks',
+                    '${Provider.of<TaskData>(context, listen: true).taskBox.values.length} Tasks',
                     style: TextStyle(
                       fontSize: 18.0,
                       color: Colors.white,
