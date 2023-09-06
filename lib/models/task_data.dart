@@ -6,7 +6,7 @@ import 'task.dart';
 import 'package:hive/hive.dart';
 
 class TaskData extends ChangeNotifier {
-  Box taskBox = Hive.box<Task>('taskBox');
+  Box<Task> taskBox = Hive.box<Task>('taskBox');
 
   int get taskBoxCount {
     return taskBox.length;
