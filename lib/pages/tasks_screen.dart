@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_app_flutter/models/task_data.dart';
 import 'package:to_do_app_flutter/widgets/tasks_list.dart';
@@ -15,6 +16,7 @@ class TasksScreen extends StatefulWidget {
 
 class _TasksScreenState extends State<TasksScreen> {
   Box taskBox = Hive.box<Task>('taskBox');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +49,7 @@ class _TasksScreenState extends State<TasksScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  CircleAvatar(
+                  const CircleAvatar(
                     radius: 30.0,
                     backgroundColor: Colors.black54,
                     child: Icon(
@@ -56,8 +58,8 @@ class _TasksScreenState extends State<TasksScreen> {
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 10.0),
-                  Text(
+                  const SizedBox(height: 10.0),
+                  const Text(
                     'YAD To Do',
                     style: TextStyle(
                       fontSize: 50.0,
@@ -65,10 +67,10 @@ class _TasksScreenState extends State<TasksScreen> {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  SizedBox(height: 10.0),
+                  const SizedBox(height: 10.0),
                   Text(
                     '${Provider.of<TaskData>(context, listen: true).taskBox.values.length} Tasks',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 18.0,
                       color: Colors.white,
                     ),
